@@ -2,7 +2,7 @@
   <div class="box form">
     <div class="columns">
       <div
-        class="column is-8"
+        class="column is-5"
         role="form"
         aria-label="Form to create new tasks"
       >
@@ -13,6 +13,20 @@
           v-model="description"
         />
       </div>
+      <div class="column is-3">
+        <div class="select">
+          <select v-model="idProject">
+            <option value="">Choose your project</option>
+            <option
+              :value="project.id"
+              v-for="project in projects"
+              :key="project.id"
+            >
+              {{ project.name }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="column">
       <counter @toFinishCounter="endTask" />
@@ -21,7 +35,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
+import { key } from "@/store";
 import Counter from "./Counter.vue";
 export default defineComponent({
   name: "Form",
@@ -31,6 +47,7 @@ export default defineComponent({
   data() {
     return {
       description: "",
+      idProject: "",
     };
   },
   components: {
@@ -42,9 +59,17 @@ export default defineComponent({
       this.$emit("savingTask", {
         durationInSeconds: timeTracked,
         description: this.description,
+        project: this.projects.find((proj) => proj.id == this.idProject),
       });
       this.description = "";
     },
+  },
+
+  setup() {
+    const store = useStore(key);
+    return {
+      projects: computed(() => store.state.projects),
+    };
   },
 });
 </script>

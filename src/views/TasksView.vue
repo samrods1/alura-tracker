@@ -1,39 +1,41 @@
 <template>
-  <main
-    class="columns is-gapless is-multiline"
-    :class="{ darkMode: modeIsDark }"
-  >
-    <div class="column is-one-quarter">
-      <Lateral-bar @toDarkMode="changeTheme" />
-    </div>
-    <div class="column is-three-quater content">
-      <router-view></router-view>
-    </div>
-  </main>
+  <Form @savingTask="saveTask" />
+  <div class="list">
+    <Box v-if="listIsEmpty"> You are not so productive today :( </Box>
+    <Task v-for="(task, index) in tasks" :key="index" :task="task" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LateralBar from './components/LateralBar.vue';
-import Projects from '../src/views/ProjectsView.vue';
-
+import Form from '../components/Form.vue';
+import Task from '../components/Task.vue';
+import ITask from '../Interfaces/ITask';
+import Box from '../components/Box.vue';
 export default defineComponent({
   name: 'App',
 
   data() {
     return {
-      modeIsDark: false,
+      tasks: [] as ITask[],
     };
+  },
+  components: {
+  
+    Form,
+    Task,
+    Box,
   },
 
   methods: {
-    changeTheme(modeIsDark: boolean) {
-      this.modeIsDark = modeIsDark;
+    saveTask(task: ITask) :void {
+      this.tasks.push(task);
     },
   },
-
-  components: {
-    LateralBar,
+  computed: {
+    listIsEmpty() :boolean {
+      return this.tasks.length == 0;
+    },
   },
 });
 </script>

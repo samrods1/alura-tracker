@@ -1,9 +1,25 @@
 <template>
   <header>
     <div>
-      <h1>{{ logo }}</h1>
+      <h1><img :src="logo" alt="Alura Tracker" /></h1>
       <button class="button" @click="changeTheme">{{ textButton }}</button>
     </div>
+    <nav class="panel nt-5">
+      <ul>
+        <li>
+          <router-link to="/" class="link">
+            <i class="fas fa-tasks"></i>
+            tasks
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/projects" class="link">
+            <i class="fas fa-project-diagram"></i>
+            projects
+          </router-link>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
@@ -15,7 +31,7 @@ export default defineComponent({
   emits: ["toDarkMode"],
   data() {
     return {
-      logo: "Alura tracker",
+      logo: require("../assets/logo.png"),
       darkMode: "Turn on dark mode",
       modeIsDark: false,
     };
@@ -43,19 +59,39 @@ export default defineComponent({
 <style>
 header {
   padding: 1rem;
-  background: rgb(44, 107, 76);
   color: #fff;
   width: 100%;
   height: 100vh;
   text-align: center;
 
-  background: linear-gradient(145deg, #34996a, #004753);
-  box-shadow: 17px 17px 33px #9e9e9e, -17px -17px 33px #ffffff;
+  background: linear-gradient(145deg, #001424 30%, #00eb76 100%);
 }
 
 header h1 {
   font-size: 4.5rem;
 }
+
+header .button {
+  border-radius: 20px;
+  background: #f1f1f1;
+}
+
+.panel li {
+  margin: 8px 0;
+}
+
+.link {
+  color: #000000;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.link.router-link-active {
+  color: #00eb76;
+}
+
 @media only screen and (max-width: 768px) {
   header {
     width: 100%;
