@@ -7,6 +7,7 @@
       <Lateral-bar @toDarkMode="changeTheme" />
     </div>
     <div class="column is-three-quater content">
+      <Notification/>
       <router-view></router-view>
     </div>
   </main>
@@ -15,7 +16,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import LateralBar from './components/LateralBar.vue';
-import Projects from '../src/views/ProjectsView.vue';
+import Notification from "../src/components/Notification.vue";
+
 
 export default defineComponent({
   name: 'App',
@@ -34,6 +36,7 @@ export default defineComponent({
 
   components: {
     LateralBar,
+    Notification
   },
 });
 </script>

@@ -64,7 +64,8 @@ header {
   height: 100vh;
   text-align: center;
 
-  background: linear-gradient(145deg, #001424 30%, #00eb76 100%);
+  background-image: url(../assets/bg.png);
+  background-size: cover;
 }
 
 header h1 {
@@ -73,7 +74,7 @@ header h1 {
 
 header .button {
   border-radius: 20px;
-  background: #f1f1f1;
+  background: #ffffff;
 }
 
 .panel li {
@@ -89,7 +90,7 @@ header .button {
 }
 
 .link.router-link-active {
-  color: #00eb76;
+  color: #ffffff;
 }
 
 @media only screen and (max-width: 768px) {

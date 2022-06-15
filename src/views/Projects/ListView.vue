@@ -9,7 +9,7 @@
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID</th> 
           <th>Name</th>
         <th>Actions</th>
         </tr>
@@ -24,7 +24,7 @@
                 <i class="fas fa-pencil-alt"></i>
               </span>
             </router-link>
-            <button class="button ml-2 is-danger" @click="delete(project.id)">
+            <button class="button ml-2 is-danger" @click="deleteProject(project.id)">
               <span class="icon is-small"> <i class="fas fa-trash"></i> </span>
             </button>
           </td>
@@ -42,7 +42,7 @@
     name: 'List',
 
     methods: {
-      delete (id: string) {
+      deleteProject (id: string) {
         this.store.commit(DELETE_PROJECT, id);
       },
     },
